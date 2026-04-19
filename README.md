@@ -161,44 +161,44 @@ During development, the system went through several iterations.
 
 At the beginning:
 
-* The graph only contained `Regulation` and `Article`
+* the graph only contained `Regulation` and `Article`
 * `Rule` nodes were not constructed yet
 * `CONTAINS_RULE` relationships were missing
-* Retrieval often returned empty results
-* The auto-test accuracy was initially very low
+* retrieval often returned empty results
+* the auto-test accuracy was initially very low
 
 **Improvements Made**
 
 To improve the system, the following changes were made:
 
 1. Implemented deterministic rule extraction in `build_kg.py`
-* Split article text into sentence-like segments
-* Infer rule type using keyword heuristics
-* Generate `action` and `result`
-* Add fallback rules when no explicit rule is extracted
+* split article text into sentence-like segments
+* infer rule type using keyword heuristics
+* generate `action` and `result`
+* add fallback rules when no explicit rule is extracted
 
 2. Built complete rule-level graph structure
-* Created `Rule` nodes
-* Connected `Article` to Rule using `CONTAINS_RULE`
+* created `Rule` nodes
+* connected `Article` to Rule using `CONTAINS_RULE`
 
 3. Improved retrieval in `query_system.py`
-* Added keyword expansion for English question variants
-* Used keyword matching against `Article.content`, `Rule.action`, and `Rule.result`
-* Added heuristic ranking for exam/admin/general question types
-* Improved handling of time-limit and penalty questions
+* added keyword expansion for English question variants
+* used keyword matching against `Article.content`, `Rule.action`, and `Rule.result`
+* added heuristic ranking for exam/admin/general question types
+* improved handling of time-limit and penalty questions
 
 4. Improved grounded answer generation
-* Answers are generated from retrieved evidence only
-* The system avoids relying on unsupported external knowledge
+* answers are generated from retrieved evidence only
+* the system avoids relying on unsupported external knowledge
 
 **Remaining Limitations**
 
 Although the system performs well overall, some limitations remain:
 
-* Rule extraction is heuristic rather than fully semantic
-* Some questions require more precise interpretation of regulation wording
-* Retrieval is still sensitive to wording differences
-* Local model answers may vary slightly depending on evidence ranking
+* rule extraction is heuristic rather than fully semantic
+* some questions require more precise interpretation of regulation wording
+* retrieval is still sensitive to wording differences
+* local model answers may vary slightly depending on evidence ranking
 
 Nevertheless, the final system achieved usable benchmark performance and successfully demonstrated a complete KG-based regulation Q&A workflow.
 
