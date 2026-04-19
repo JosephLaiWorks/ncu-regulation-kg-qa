@@ -118,6 +118,90 @@ Main responsibilities:
 Loads a local Hugging Face model:
 - `Qwen/Qwen2.5-3B-Instruct`
 
+### 5.4 Key Cypher Query Design and Retrieval Strategy
+
+The retrieval module in `query_system.py` uses Neo4j to search for relevant rules from the Knowledge Graph.
+
+### Retrieval Strategy
+The system first expands keywords from the user question, then performs rule retrieval by matching terms against:
+- `Article.content`
+- `Rule.action`
+- `Rule.result`
+- `Rule.reg_name`
+
+The main retrieval logic uses Cypher to match:
+
+- `(:Article)-[:CONTAINS_RULE]->(:Rule)`
+
+Candidate rules are scored based on keyword matches.  
+Additional heuristic weighting is applied for different question types, such as:
+- exam-related questions
+- student ID replacement questions
+- general academic regulation questions
+- time-related questions
+- penalty-related questions
+
+This design improves retrieval precision without requiring a larger external model.
+
+### Example Query Pattern
+A representative Cypher pattern used in retrieval is:
+
+```cypher
+MATCH (a:Article)-[:CONTAINS_RULE]->(r:Rule)
+RETURN r.rule_id, r.type, r.action, r.result, r.art_ref, r.reg_name
+```
+
+This allows the system to retrieve rule-level evidence instead of only article-level text.
+
+### 5.5 Failure Analysis and Improvements Made
+
+During development, the system went through several iterations.
+
+**Initial Problems**
+
+At the beginning:
+
+* The graph only contained `Regulation` and `Article`
+* `Rule` nodes were not constructed yet
+* `CONTAINS_RULE` relationships were missing
+* Retrieval often returned empty results
+* The auto-test accuracy was initially very low
+
+**Improvements Made**
+
+To improve the system, the following changes were made:
+
+1. Implemented deterministic rule extraction in `build_kg.py`
+* Split article text into sentence-like segments
+* Infer rule type using keyword heuristics
+* Generate `action` and `result`
+* Add fallback rules when no explicit rule is extracted
+
+2. Built complete rule-level graph structure
+* Created `Rule` nodes
+* Connected `Article` to Rule using `CONTAINS_RULE`
+
+3. Improved retrieval in `query_system.py`
+* Added keyword expansion for English question variants
+* Used keyword matching against `Article.content`, `Rule.action`, and `Rule.result`
+* Added heuristic ranking for exam/admin/general question types
+* Improved handling of time-limit and penalty questions
+
+4. Improved grounded answer generation
+* Answers are generated from retrieved evidence only
+* The system avoids relying on unsupported external knowledge
+
+**Remaining Limitations**
+
+Although the system performs well overall, some limitations remain:
+
+* Rule extraction is heuristic rather than fully semantic
+* Some questions require more precise interpretation of regulation wording
+* Retrieval is still sensitive to wording differences
+* Local model answers may vary slightly depending on evidence ranking
+
+Nevertheless, the final system achieved usable benchmark performance and successfully demonstrated a complete KG-based regulation Q&A workflow.
+
 This project uses a local model instead of external API services.
 
 ---
