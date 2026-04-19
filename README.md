@@ -230,6 +230,16 @@ If the Neo4j container does not exist yet:
 docker run -d --name neo4j -p 7474:7474 -p 7687:7687 -e NEO4J_AUTH=neo4j/password neo4j:latest
 ```
 
+After Neo4j is running, open Neo4j Browser in your browser:
+```
+http://localhost:7474
+```
+
+Login with:
+
+* Username: neo4j
+* Password: password
+
 ### 10.2 Activate virtual environment
 
 ```
