@@ -205,7 +205,7 @@ This demonstrates that the KG can support grounded regulation Q&A.
 ## 9. Challenges and Improvements
 
 ### Challenges
-1. Regulation text is long and sometimes mixes English and Chinese.
+1. Regulation text is long and sometimes mixes English and Mandarin.
 2. Rule extraction is not always perfectly aligned with human legal interpretation.
 3. Retrieval quality depends heavily on keyword matching and ranking.
 4. Some questions require more precise semantic understanding than simple keyword overlap.
