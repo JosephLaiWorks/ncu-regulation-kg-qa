@@ -223,22 +223,41 @@ This demonstrates that the KG can support grounded regulation Q&A.
 ### 10.1 Start Neo4j
 ```bash
 docker start neo4j
+```
 
 If the Neo4j container does not exist yet:
-
+```
 docker run -d --name neo4j -p 7474:7474 -p 7687:7687 -e NEO4J_AUTH=neo4j/password neo4j:latest
-10.2 Activate virtual environment
+```
+
+### 10.2 Activate virtual environment
+
+```
 .venv\Scripts\activate
-10.3 Build the KG
+```
+
+### 10.3 Build the KG
+
+```
 python build_kg.py
-10.4 Run interactive Q&A
+```
+
+### 10.4 Run interactive Q&A
+
+```
 python query_system.py
-10.5 Run evaluation
+```
+
+### 10.5 Run evaluation
+
+```
 python auto_test.py
-11. Required Files
+```
+
+### 11. Required Files
 
 This repository includes:
-
+```txt=
 README.md
 auto_test.py
 build_kg.py
@@ -246,41 +265,15 @@ llm_loader.py
 query_system.py
 requirements.txt
 .gitignore
-12. Conclusion
+```
+
+## 12. Conclusion
 
 This project successfully builds a regulation-oriented Knowledge Graph for NCU regulations and supports grounded question answering using Neo4j and a local Hugging Face model.
 
 The final system can:
 
-represent regulation structure as a graph
-retrieve relevant rule evidence
-generate grounded answers
-achieve usable benchmark performance on the provided test set
-
----
-
-# 你現在要做的事
-
-## 1. 建一個圖片資料夾
-建議在 repo 裡放：
-
-```text
-images/
-
-然後把你截好的圖改成這些檔名：
-
-kg_overview.png
-article_count.png
-rule_count.png
-contains_rule_count.png
-rule_samples.png
-build_coverage.png
-auto_test_summary.png
-manual_demo.png
-2. 把 README 裡這行改成你的真實分數
-Final auto-test accuracy: **[請填入你的最終百分比]**
-3. 如果你有單筆完整 Rule 的圖
-
-可以再多加一張：
-
-![Single Rule Example](images/single_rule_example.png)
+* represent regulation structure as a graph
+* retrieve relevant rule evidence
+* generate grounded answers
+* achieve usable benchmark performance on the provided test set
