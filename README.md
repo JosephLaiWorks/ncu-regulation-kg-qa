@@ -338,19 +338,25 @@ Login with:
 .venv\Scripts\activate
 ```
 
-### 10.3 Build the KG
+### 10.3 Install dependencies
+
+```
+pip install -r requirements.txt
+```
+
+### 10.4 Build the KG
 
 ```
 python build_kg.py
 ```
 
-### 10.4 Run interactive Q&A
+### 10.5 Run interactive Q&A
 
 ```
 python query_system.py
 ```
 
-### 10.5 Run evaluation
+### 10.6 Run evaluation
 
 ```
 python auto_test.py
@@ -361,7 +367,7 @@ python auto_test.py
 ## 11. Required Files
 
 This repository includes:
-```txt=
+```txt
 README.md
 auto_test.py
 build_kg.py
