@@ -304,6 +304,10 @@ This demonstrates that the KG can support grounded regulation Q&A.
 
 ## 10. How to Run
 
+> Note:
+> This repository already includes `ncu_regulations.db`, so `setup_data.py` can be skipped during reproduction.
+> The grader can directly start from KG construction with `build_kg.py`.
+
 ### 10.1 Start Neo4j
 ```bash
 docker start neo4j
@@ -365,6 +369,8 @@ llm_loader.py
 query_system.py
 requirements.txt
 .gitignore
+ncu_regulations.db
+images/
 ```
 
 ---
