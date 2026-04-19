@@ -254,7 +254,9 @@ python query_system.py
 python auto_test.py
 ```
 
-### 11. Required Files
+---
+
+## 11. Required Files
 
 This repository includes:
 ```txt=
@@ -266,6 +268,8 @@ query_system.py
 requirements.txt
 .gitignore
 ```
+
+---
 
 ## 12. Conclusion
 
