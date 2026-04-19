@@ -143,42 +143,50 @@ This project uses a local model instead of external API services.
 ### 7.1 KG Structure Overview
 Shows the graph structure with `Regulation`, `Article`, and `Rule` nodes.
 
-![KG Overview](images/kg_overview.png)
+![KG Overview](images/KG-struct-overall.jpg)
 
 ### 7.2 Article Count
 Shows the total number of `Article` nodes.
 
-![Article Count](images/article_count.png)
+![Article Count](images/article-number.jpg)
 
 ### 7.3 Rule Count
 Shows the total number of `Rule` nodes.
 
-![Rule Count](images/rule_count.png)
+![Rule Count](images/rule-number.jpg)
 
 ### 7.4 Relationship Count
 Shows the total number of `CONTAINS_RULE` relationships.
 
-![Relationship Count](images/contains_rule_count.png)
+![Relationship Count](images/contain_row-number.jpg)
 
 ### 7.5 Rule Samples
 Shows sample extracted rules.
 
-![Rule Samples](images/rule_samples.png)
+![Rule Sample 1](images/Rule1.jpg)
+![Rule Sample 2](images/Rule2.jpg)
+![Rule Sample 3](images/Rule3.jpg)
 
 ### 7.6 Coverage Output
 Shows the terminal output of KG construction coverage.
 
-![Coverage Output](images/build_coverage.png)
+![Coverage Output](images/build_kg-coverage-terminal.jpg)
 
 ### 7.7 Auto Test Summary
 Shows the final benchmark evaluation result.
 
-![Auto Test Summary](images/auto_test_summary.png)
+![Auto Test Summary](images/autotest-Result.jpg)
 
 ### 7.8 Manual Q&A Demo
 Shows one example query answered by the system.
 
-![Manual Demo](images/manual_demo.png)
+![Manual Demo](images/query-system-choose1Q.jpg)
+
+### 7.9 Additional Neo4j Visualization
+Additional partial graph views for different relationship layers.
+
+![Regulation to Article](images/Neo4j-Browser-only-Regulation-Article.jpg)
+![Article to Rule](images/Neo4j-Browser-only-Article-Rule.jpg)
 
 ---
 
