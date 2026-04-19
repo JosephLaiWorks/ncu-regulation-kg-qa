@@ -225,6 +225,10 @@ This demonstrates that the KG can support grounded regulation Q&A.
 docker start neo4j
 ```
 
+* start Neo4j locally
+* open Neo4j Browser at `http://localhost:7474`
+
+
 If the Neo4j container does not exist yet:
 ```
 docker run -d --name neo4j -p 7474:7474 -p 7687:7687 -e NEO4J_AUTH=neo4j/password neo4j:latest
