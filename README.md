@@ -128,7 +128,7 @@ The final system demonstrates an end-to-end workflow from structured regulation 
 
 ## Knowledge Graph Design
 ```mermaid
-graph TD
+graph LR
     R["Regulation<br/>id, name, category"]
     A["Article<br/>number, content,<br/>reg_name, category"]
     U["Rule<br/>rule_id, type,<br/>action, result,<br/>art_ref, reg_name"]
