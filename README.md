@@ -198,7 +198,7 @@ Although the system performs well overall, some limitations remain:
 * rule extraction is heuristic rather than fully semantic
 * some questions require more precise interpretation of regulation wording
 * retrieval is still sensitive to wording differences
-* local model answers may vary slightly depending on evidence ranking
+* Answer quality is sensitive to retrieval and evidence ranking
 
 Nevertheless, the final system achieved usable benchmark performance and successfully demonstrated a complete KG-based regulation Q&A workflow.
 
