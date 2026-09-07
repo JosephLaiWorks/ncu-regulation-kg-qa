@@ -75,10 +75,10 @@ flowchart TD
     LLM --> Answer
     Answer --> Eval
 ```
-
-The overall assignment framework was provided by the course staff.
-My main focus was on understanding and analyzing the QA retrieval and
-grounded answer generation path, particularly `query_system.py`.
+> notice
+> The overall assignment framework was provided by the course staff.
+> My main focus was on understanding and analyzing the QA retrieval and
+> grounded answer generation path, particularly `query_system.py`.
 
 The final KG schema is:
 
