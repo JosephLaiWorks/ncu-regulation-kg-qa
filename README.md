@@ -54,42 +54,31 @@ Regulation–Article–Rule graph, so that I could understand the complete syste
 
 ## System Architecture
 
-```text
-Regulation Documents
-        │
-        ▼
-Structured SQLite Data
-(ncu_regulations.db)
-        │
-        ▼
-build_kg.py
-        │
-        ├─ Regulation nodes
-        ├─ Article nodes
-        └─ Rule nodes
-        │
-        ▼
-Neo4j Knowledge Graph
-        │
-        ▼
-query_system.py
-        │
-        ├─ Keyword expansion
-        ├─ Cypher retrieval
-        ├─ Candidate ranking
-        └─ Evidence selection
-        │
-        ▼
-Local Hugging Face LLM
-Qwen/Qwen2.5-3B-Instruct
-        │
-        ▼
-Grounded Answer
-        │
-        ▼
-auto_test.py
-Benchmark Evaluation
+```mermaid
+flowchart LR
+    PDF["Regulation PDFs"]
+    SQLite["SQLite<br/>ncu_regulations.db"]
+    KG["Neo4j<br/>Knowledge Graph"]
+    QA["query_system.py"]
+    Retrieval["Cypher Retrieval<br/>+ Heuristic Ranking"]
+    Evidence["Rule Evidence"]
+    LLM["Local LLM<br/>Qwen2.5-3B-Instruct"]
+    Answer["Grounded Answer"]
+    Eval["auto_test.py<br/>Evaluation"]
+
+    PDF --> SQLite
+    SQLite --> KG
+    KG --> QA
+    QA --> Retrieval
+    Retrieval --> Evidence
+    Evidence --> LLM
+    LLM --> Answer
+    Answer --> Eval
 ```
+
+The overall assignment framework was provided by the course staff.
+My main focus was on understanding and analyzing the QA retrieval and
+grounded answer generation path, particularly `query_system.py`.
 
 The final KG schema is:
 
@@ -188,6 +177,52 @@ This structure supports both:
 - rule-level retrieval for question answering
 
 ---
+
+## Retrieval & Grounded QA Pipeline
+
+The QA pipeline first preprocesses the user question in Python, then sends
+the resulting search terms and question-type signals to Neo4j for heuristic
+retrieval and ranking. The highest-ranked Rules are deduplicated and converted
+into evidence for grounded answer generation.
+
+```mermaid
+flowchart TD
+    Q["User Question"]
+    P["Question Preprocessing"]
+
+    QT["Detect Question Type"]
+    KW["Build Match Terms"]
+    CAT["Detect Category Preference"]
+
+    CYPHER["Cypher Retrieval<br/>in Neo4j"]
+    SCORE["Heuristic Scoring<br/>Keyword Match<br/>+ Category Bonus<br/>+ Type Bonus"]
+
+    TOP12["Top 12 Candidates"]
+    DEDUP["Python Deduplication"]
+    TOP5["Top 5 Rules"]
+
+    EVIDENCE["Build Evidence"]
+    LLM["Local LLM"]
+    ANSWER["Grounded Answer"]
+
+    Q --> P
+
+    P --> QT
+    P --> KW
+    P --> CAT
+
+    QT --> CYPHER
+    KW --> CYPHER
+    CAT --> CYPHER
+
+    CYPHER --> SCORE
+    SCORE --> TOP12
+    TOP12 --> DEDUP
+    DEDUP --> TOP5
+    TOP5 --> EVIDENCE
+    EVIDENCE --> LLM
+    LLM --> ANSWER
+```
 
 ## System Workflow
 
