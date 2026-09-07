@@ -411,7 +411,7 @@ Question
 
 ### Knowledge Graph Structure
 
-![KG Overview](images/KG-struct-overall.jpg)
+![KG Overview](images/first-KG.jpg)
 
 ### Article Count
 
@@ -447,9 +447,9 @@ Question
 
 ### Additional Neo4j Views
 
-![Regulation to Article](images/Neo4j-Browser-only-Regulation-Article.jpg)
+![Regulation to Article](images/second-KG.jpg)
 
-![Article to Rule](images/Neo4j-Browser-only-Article-Rule.jpg)
+![Article to Rule](images/third-KG.jpg)
 
 ---
 
