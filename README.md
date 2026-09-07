@@ -55,7 +55,7 @@ Regulation–Article–Rule graph, so that I could understand the complete syste
 ## System Architecture
 
 ```mermaid
-flowchart LR
+flowchart TD
     PDF["Regulation PDFs"]
     SQLite["SQLite<br/>ncu_regulations.db"]
     KG["Neo4j<br/>Knowledge Graph"]
