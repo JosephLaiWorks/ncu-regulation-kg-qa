@@ -80,12 +80,6 @@ flowchart TD
 > My main focus was on understanding and analyzing the QA retrieval and
 > grounded answer generation path, particularly `query_system.py`.
 
-The final KG schema is:
-
-```text
-(Regulation)-[:HAS_ARTICLE]->(Article)-[:CONTAINS_RULE]->(Rule)
-```
-
 ---
 
 ## Tech Stack
@@ -411,6 +405,9 @@ Question
 
 ### Knowledge Graph Structure
 
+The Neo4j graph shows the complete `Regulation → Article → Rule` structure,
+including both `HAS_ARTICLE` and `CONTAINS_RULE` relationships.
+
 ![KG Overview](images/first-KG.jpg)
 
 ### Article Count
@@ -447,7 +444,17 @@ Question
 
 ### Additional Neo4j Views
 
+The following views isolate the two relationship layers for easier inspection.
+
+#### Regulation → Article
+
+Shows how a regulation connects to its articles through `HAS_ARTICLE`.
+
 ![Regulation to Article](images/second-KG.jpg)
+
+#### Article → Rule
+
+Shows how articles connect to extracted rule-level facts through `CONTAINS_RULE`.
 
 ![Article to Rule](images/third-KG.jpg)
 
