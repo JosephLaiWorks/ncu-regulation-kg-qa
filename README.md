@@ -23,32 +23,32 @@ The project converts structured regulation data into a Neo4j Knowledge Graph, re
 
 ## My Contribution
 
-My main work in this project focused on turning the original regulation data into a usable KG-grounded QA pipeline and improving retrieval quality through iterative debugging and evaluation.
+This project was developed based on an assignment framework provided by the course staff.
 
-I contributed to:
+My work focused mainly on understanding, analyzing, and improving the QA retrieval
+and grounded answer generation pipeline, especially in `query_system.py`.
 
-- Designing and implementing the final Knowledge Graph structure:
-  - `Regulation`
-  - `Article`
-  - `Rule`
-  - `HAS_ARTICLE`
-  - `CONTAINS_RULE`
-- Implementing deterministic rule extraction in `build_kg.py`:
-  - sentence-like segmentation
-  - keyword-based rule type inference
-  - `action` / `result` generation
-  - fallback rule creation
-- Building the Neo4j graph from the existing SQLite regulation database.
-- Implementing Cypher-based retrieval of rule-level evidence.
-- Improving `query_system.py` with:
+My main work included:
+
+- Tracing and understanding the end-to-end QA retrieval flow.
+- Analyzing question preprocessing, including:
+  - question normalization
+  - tokenization
   - keyword expansion
-  - candidate scoring
-  - question-type-specific heuristic weighting
-  - handling for time-limit and penalty-related questions
-- Integrating a local Hugging Face LLM for evidence-grounded answer generation.
-- Using `auto_test.py` to evaluate the system, identify failure cases, and iteratively improve graph coverage and retrieval accuracy.
+  - question-type detection
+- Understanding and analyzing the interaction between Python and Cypher retrieval.
+- Studying the heuristic scoring strategy, including:
+  - keyword matching
+  - category preference
+  - question-type bonus
+- Understanding result ranking and deduplication before selecting the Top Rules.
+- Analyzing how retrieved Rules are converted into structured evidence.
+- Understanding how the local LLM generates answers constrained by retrieved evidence.
+- Running the benchmark evaluation and analyzing retrieval limitations and failure cases.
 
-A major improvement during development was moving from an incomplete graph containing only `Regulation` and `Article` nodes to a complete **rule-level graph**, which significantly improved retrieval reliability.
+I also studied how the provided data preparation and KG construction components
+(`setup_data.py` and `build_kg.py`) connect SQLite regulation data to the Neo4j
+Regulation–Article–Rule graph, so that I could understand the complete system pipeline.
 
 ---
 
